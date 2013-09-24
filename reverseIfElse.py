@@ -10,8 +10,9 @@ def getFileContents(fileName):
 # group 1 - expression inside if
 # group 2 - everything inside the else between the braces {...}
 def findIfWithEmptyBodyInString(searchStr):
-	for m in re.finditer(r"if\s*\((.+\))\s*\{\s*\}\s*else\s*\{((\{.*\}|[^{$}])*)\}", searchStr):
-		print 'IF Expression: %s \n +++++++ \n ELSE Contents: \n %s \n --------' % (m.group(1), m.group(2))
+	return re.finditer(r"if\s*\((.+\))\s*\{\s*\}\s*else\s*\{((\{.*\}|[^{$}])*)\}", searchStr)
+	
+
 
 #def getElseBodyPart():
 
@@ -24,8 +25,13 @@ def findIfWithEmptyBodyInString(searchStr):
 #def readAllFilesFromFolder(folder):
 
 def main():
-	fileContents = getFileContents("d:\Views\evoSiSz0_ESF_CoreDev_002.001_AT_pre\ESF_CORE\dev\logic\src\BaseSI.cpp")
-	findIfWithEmptyBodyInString(fileContents)
+	fileName = "d:\Views\evoSiSz0_ESF_CoreDev_002.001_AT_pre\ESF_CORE\dev\logic\src\BaseSI.cpp"
+	fileContents = getFileContents(fileName)
+	matches = findIfWithEmptyBodyInString(fileContents)
+	for m in matches:
+		print 'IF Expression: %s \n +++++++ \n ELSE Contents: \n %s \n --------' % (m.group(1), m.group(2))
+
+	
 
 if __name__ == "__main__":
 	main()
