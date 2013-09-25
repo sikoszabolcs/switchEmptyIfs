@@ -30,8 +30,9 @@ def main():
 	matches = findIfWithEmptyBodyInString(fileContents)
 	for m in matches:
 		print 'IF Expression: %s \n +++++++ \n ELSE Contents: \n %s \n --------' % (m.group(1), m.group(2))
+		print 'start: %d end: %d' % (m.start(1), m.end(1))
 
-	
+
 
 if __name__ == "__main__":
 	main()
