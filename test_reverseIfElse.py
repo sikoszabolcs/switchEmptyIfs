@@ -56,6 +56,11 @@ class TestReverseIfElse(unittest.TestCase):
 		result = reverseIfElse.insertElseIntoIf(testString)
 		self.assertEqual("if(a>b){if(elephant>moon){everythingFine();}}", result)
 
+	 def test_insertElseIntoIf_with_embedded_If_with_whitespaces(self):
+	 	testString = "if(a>b) \n{\n    \n   \n}else{\n\tif(elephant>moon){\n }\nelse\n{\n\t\teverythingFine();\n\t\tbutThatsGoingToChange();}}"
+		result = reverseIfElse.insertElseIntoIf(testString)
+		self.assertEqual("if(a>b) \n{\n\tif(elephant>moon){\n \n\t\teverythingFine();\n\t\tbutThatsGoingToChange();}}", result)
+
 
 if __name__ == '__main__':
 	unittest.main()
